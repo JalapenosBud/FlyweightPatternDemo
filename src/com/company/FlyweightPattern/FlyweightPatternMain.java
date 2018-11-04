@@ -6,8 +6,9 @@ public class FlyweightPatternMain
     
     public static void main(String[] args)
     {
-        //lav 10.000 objekter
-        for(int i=0; i < 10000; ++i) {
+        long startTime = System.currentTimeMillis();
+        //lav 100.000.000 objekter
+        for(int i=0; i < 500000; ++i) {
             //her vil vi lave et nyt objekt
             //men i stedet for at bruge new, så forespørger vi bare vores factory om det eksisterer
             Circle circle = (Circle)ShapeFactory.getCircle(getRandomColor());
@@ -19,6 +20,11 @@ public class FlyweightPatternMain
             //"tern" her printer vi bare til konsol
             circle.draw();
         }
+    
+        long endTime = System.currentTimeMillis();
+    
+        System.out.println("In FLYWEIGHT that took: " +  (endTime-startTime) + "ms");
+        
     }
     private static String getRandomColor() {
         return colors[(int)(Math.random()*colors.length)];
